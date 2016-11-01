@@ -1,2 +1,28 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$background-color: #fdf6ee;
+$font-color: #dfdfdf;
+$white: #fff;
+$container-color: #fadad7;
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.container {
+  background-color: $container-color;
+  position: relative;
+  width: 50%;
+}
+
+.box::before {
+  content: '';
+  display: block;
+	padding-top: 100%;
+}
+
+.box {
+  border: 1px solid $white;
+}
