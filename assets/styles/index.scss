@@ -5,6 +5,7 @@ $background-color: #fdf6ee;
 $font-color: #dfdfdf;
 $white: #fff;
 $container-color: #fadad7;
+$content-color: #000;
 
 body {
   background-color: $background-color;
@@ -13,16 +14,29 @@ body {
 
 .container {
   background-color: $container-color;
-  position: relative;
+  position: center;
   width: 50%;
+}
+
+.content {
+  bottom: 0;
+  color: $content-color;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+
+}
+
+.box {
+  border: 5px solid $content-color;
+  position: relative;
+  width: 30%;
 }
 
 .box::before {
   content: '';
   display: block;
-	padding-top: 100%;
-}
-
-.box {
-  border: 1px solid $white;
+  padding-top: 100%;
 }
