@@ -2,10 +2,13 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $background-color: #fdf6ee;
-$font-color: #dfdfdf;
+$font-color: #fff;
 $white: #fff;
 $container-color: #fadad7;
 $content-color: #000;
+$container-width: 600px;
+$box-width: $container-width / 3;
+
 
 body {
   background-color: $background-color;
@@ -15,27 +18,20 @@ body {
 .container {
   background-color: $container-color;
   position: center;
-  width: 50%;
-}
-
-.content {
-  bottom: 0;
-  color: $content-color;
-  left: 0;
-  position: absolute;
-  right: 0;
-  text-align: center;
-  top: 0;
+  width: $container-width;
 
 }
 
 .box {
   border: 5px solid $content-color;
+  height: $box-width;
+  width: $box-width;
   position: relative;
+  font-size: 140px;
 }
 
-.box::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
-}
+//.box::before {
+  //content: '';
+  //display: block;
+//  padding-top: 100%;
+//}
