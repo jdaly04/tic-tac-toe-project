@@ -6,7 +6,6 @@
   <script src="vendor.bundle.js" type="text/javascript" charset="utf-8" defer></script>
   <script src="bundle.js" type="text/javascript" charset="utf-8" defer></script>
 </head>
-
 <body>
   <!-- NAV BAR STARTS -->
   <nav class="navbar navbar-inverse">
@@ -15,9 +14,6 @@
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand">TIC-TAC-TOE</a>
       </div>
@@ -30,23 +26,22 @@
             <ul class="dropdown-menu">
               <li>
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signUpModal">
                 SIGN UP!
               </button>
               </li>
               <li>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signInModal">
                 SIGN IN!
               </button>
               </li>
               <li>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#changePasswordModal">
                CHANGE PASSWORD
              </button>
               </li>
-              <li role="separator" class="divider"></li>
               <li>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#signOutModal">
                SIGN OUT
              </button>>
               </li>
@@ -103,27 +98,27 @@
     <!-- GAME BOARD ENDS HERE -->
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signUp">
+    <!-- signUpModal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="signUp">Sign Up!</h4>
+            <h4 class="modal-title" id="signUpLabel">Sign Up!</h4>
           </div>
           <div class="modal-body">
-            <form class='sign-up-form'>
+            <form id="sign-up">
               <div class="form-group">
                 <label for="sign-up-email">Email address</label>
-                <input type="email" id="sign-up-email" class="form-control" placeholder="Email">
+                <input name="credentials[email]" type="text" placeholder="Email">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input name="credentials[password]" type="password" placeholder="Password">
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Confirm Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password">
+                <input name="credentials[password_confirmation]" type="password" placeholder="Confirm Password">
               </div>
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
@@ -131,6 +126,69 @@
         </div>
       </div>
     </div>
+
+<!-- signIn Modal -->
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signInLabel">Sign In!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="sign-in">
+          <div class="form-group">
+            <label for="sign-in-email">Email address</label>
+            <input name="credentials[email]" type="text" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input name="credentials[password]" type="password" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--changePasswordModal -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="changePasswordLabel">Change Password!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="change-password">
+          <input type="password" name="passwords[old]"
+          placeholder="old password">
+        <input type="password" name="passwords[new]"
+          placeholder="new password">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--signOutModal -->
+<div class="modal fade" id="signOutModal" tabindex="-1" role="dialog" aria-labelledby="signOutLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="signOutLabel">Sign Out!</h4>
+      </div>
+      <div class="modal-body">
+        <form id="sign-out">
+          <input type="submit" name="submit" value="Sign Out!">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
   </div>
 </body>
 </html>

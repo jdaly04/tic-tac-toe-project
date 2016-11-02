@@ -18,7 +18,7 @@ const signUp = (data) =>
   const changePassword = (data) =>
     $.ajax({
       url: config.host + '/change-password/' + store.user.id,
-      method: 'POST',
+      method: 'PATCH',
       data,   //we should also add store.user = null (so the token is no longer stored)
       headers: {
         Authorization: 'Token token=' + store.user.token,

@@ -1,5 +1,6 @@
 'use strict';
 
+const authEvents= require('./auth/events.js');
 //let board= ["BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"];
 //refers to class ()
 //let curPlayer= "X";
@@ -20,3 +21,7 @@
 //alert('This is where X would go!')
 //});)
 //});
+$(() => {
+  authEvents.addHandlers();  //when your document is fully loaded, then this code will run. the DOM has been
+                              // constructed. if you're trying to use an API, check the README doc to kno                            // what the specs are
+});
