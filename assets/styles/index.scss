@@ -1,2 +1,41 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$background-color: #fdf6ee;
+$font-color: #dfdfdf;
+$white: #fff;
+$container-color: #fadad7;
+$content-color: #000;
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.container {
+  background-color: $container-color;
+  position: center;
+  width: 50%;
+}
+
+.content {
+  bottom: 0;
+  color: $content-color;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+
+}
+
+.box {
+  border: 5px solid $content-color;
+  position: relative;
+}
+
+.box::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
