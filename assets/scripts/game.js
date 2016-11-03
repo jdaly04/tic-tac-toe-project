@@ -1,13 +1,18 @@
 'use strict';
 
-let curPlayer = 'X';
-let board = []
+store.game
+//table cells
+//array for game board
+//database
+//let curPlayer = 'X';
+//const board = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 
-//let board= ["BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK", "BLANK"];
-//refers to class ()
-//let curPlayer= "X";
 
-let checkWinner = function();
+
+
+
+
+//let checkWinner = function();
   //checks if x wins across, diagonally or down.
   //checks if o wins across, diagnoally or down.
 
