@@ -8,6 +8,7 @@ $container-color: #fadad7;
 $content-color: #000;
 $container-width: 600px;
 $box-width: $container-width / 3;
+$box-height: $container-width / 3;
 
 
 body {
@@ -24,14 +25,9 @@ body {
 
 .box {
   border: 5px solid $content-color;
-  height: $box-width;
-  width: $box-width;
-  position: relative;
   font-size: 140px;
-}
+  height: $box-height;
+  position: relative;
+  width: $box-width;
 
-//.box::before {
-  //content: '';
-  //display: block;
-//  padding-top: 100%;
-//}
+}

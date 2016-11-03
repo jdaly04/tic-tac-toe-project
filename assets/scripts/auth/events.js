@@ -37,6 +37,7 @@ const onSignOut = function (event) {
 };
 
 const onClickSq1 = function () {
+
   $("#sq1").text('X');
 };
 
