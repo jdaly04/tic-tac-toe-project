@@ -1,9 +1,15 @@
 'use strict';
 
 
+
+
+//store.game
+
+
 let board = ['', '', '', '', '', '', '', '', ''];
 let player = '';
 //let checkWin= function() {
+
 
 //CHECK WIN ROWS:
 
@@ -30,12 +36,14 @@ let checkWin = function () {
      (board[2] === "O" && board[4] === "O" && board[6] === "O"))
   {
     console.log("O Won!");
-
-  } else if ((board[0] !== "" && board[1] !== "" && board[2] && board[3]!== "" && board[4] !== "" && board[5] !== "" && board[6] !== "" &&
-            board[7] !== "" && board[8] !== "" && board[9] !== ""))
-{
 }
 };
+//  } else if ((board[0] !== "" && board[1] !== "" && board[2] !== "" && board[3]!== "" && board[4] !== ""
+          //  && board[5] !== "" && board[6] !== "" && board[7] !== "" && board[8] !== "" && board[9] !== ""))
+//{
+//}   console.log("Tie Game!");
+//};
+
 
 
 
@@ -59,6 +67,7 @@ module.exports = {
   player,
   checkWin,
 };
+
 //table cells
 //array for game board
 //database
