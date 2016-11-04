@@ -32,7 +32,7 @@ const signUp = (data) =>
         headers: {
           Authorization: 'Token token=' + store.user.token,
         }
-      })
+      });
 
 module.exports = {
   signUp,   //makes it available for use
