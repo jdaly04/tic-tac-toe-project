@@ -2,14 +2,13 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 $background-color: #fdf6ee;
-$font-color: #fff;
+$font-color: #000;
 $white: #fff;
 $container-color: #fadad7;
 $content-color: #000;
 $container-width: 600px;
 $box-width: $container-width / 3;
 $box-height: $container-width / 3;
-
 
 body {
   background-color: $background-color;
@@ -28,6 +27,7 @@ body {
   font-size: 140px;
   height: $box-height;
   position: relative;
+  text-align: center;
   width: $box-width;
 
 }

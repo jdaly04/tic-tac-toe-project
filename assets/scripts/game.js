@@ -1,6 +1,38 @@
 'use strict';
 
-store.game
+
+let board = ['', '', '', '', '', '', '', '', ''];
+let player = '';
+//let checkWin= function() {
+
+
+
+let checkWin = function () {
+   if (board[0] === "X" && board[1] === "X" && board[2] === "X") {
+      console.log("x won");
+  }
+};
+
+//let currentPlayer = function() {
+  //if(player ==='1'){
+    //player = '2';
+//  }
+  //else {
+  //  player = '1';
+//  }
+//};
+
+//let gameMove = function () {
+//  if (currentPlayer === '1') {
+
+//  }
+//};
+
+module.exports = {
+  board,
+  player,
+  checkWin,
+};
 //table cells
 //array for game board
 //database
