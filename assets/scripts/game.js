@@ -8,9 +8,14 @@
 
 let board = ['', '', '', '', '', '', '', '', ''];
 let player = '';
+let moves = 0;
 //let checkWin= function() {
 
-
+let tie = function () {
+  if (moves === "9") {
+    console.log("It's a tie!");
+  }
+}; tie ();
 //CHECK WIN ROWS:
 
 let checkWin = function () {
