@@ -15,6 +15,11 @@ body {
   color: $font-color;
 }
 
+.game-buttons {
+  float: right;
+  position: relative;
+}
+
 .container {
   background-color: $container-color;
   position: center;
