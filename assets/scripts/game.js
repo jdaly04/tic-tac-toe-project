@@ -8,15 +8,11 @@
 
 let board = ['', '', '', '', '', '', '', '', ''];
 let player = '';
-let moves = 0;
+
 //let checkWin= function() {
 
-let tie = function () {
-  if (moves === "9") {
-    console.log("It's a tie!");
-  }
-}; tie ();
-//CHECK WIN ROWS:
+
+//CHECK WIN:
 
 let checkWin = function () {
    if ((board[0] === "X" && board[1] === "X" && board[2] === "X") ||
@@ -28,10 +24,10 @@ let checkWin = function () {
       (board[0] === "X" && board[4] === "X" && board[8] === "X") ||
       (board[2] === "X" && board[4] === "X" && board[6] === "X"))
     {
-
-      console.log("X Won!");
+      $('.win').text("X won!");
+      return true;
     }
-  if ((board[0] === "O" && board[1] === "O" && board[2] === "O") ||
+  else if ((board[0] === "O" && board[1] === "O" && board[2] === "O") ||
      (board[3] === "O" && board[4] === "O" && board[5] === "O")  ||
      (board[6] === "O" && board[7] === "O" && board[8]=== "O") ||
      (board[0] === "O" && board[3] === "O" && board[6] === "O") ||
@@ -40,7 +36,15 @@ let checkWin = function () {
      (board[0] === "O" && board[4] === "O" && board[8] === "O") ||
      (board[2] === "O" && board[4] === "O" && board[6] === "O"))
   {
-    console.log("O Won!");
+    $('.win').text("O won!");
+    return true;
+  }
+    else if (board.indexOf('') < 0){
+      $('.win').text("Tie Game!");
+      return true;
+    }
+    else {
+      return false;
 }
 };
 //  } else if ((board[0] !== "" && board[1] !== "" && board[2] !== "" && board[3]!== "" && board[4] !== ""
