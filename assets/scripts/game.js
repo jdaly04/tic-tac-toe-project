@@ -47,29 +47,14 @@ let checkWin = function () {
       return false;
 }
 };
-//  } else if ((board[0] !== "" && board[1] !== "" && board[2] !== "" && board[3]!== "" && board[4] !== ""
-          //  && board[5] !== "" && board[6] !== "" && board[7] !== "" && board[8] !== "" && board[9] !== ""))
-//{
-//}   console.log("Tie Game!");
-//};
+let game_reset = function() {
+  board = ['', '', '', '', '', '', '', '', ''];
+  $('.box').text('');
+  $('.box').css('container-color');
+  $('.win').text('');
+};
 
-
-
-
-//let currentPlayer = function() {
-  //if(player ==='1'){
-    //player = '2';
-//  }
-  //else {
-  //  player = '1';
-//  }
-//};
-
-//let gameMove = function () {
-//  if (currentPlayer === '1') {
-
-//  }
-//};
+$('.reset').on("click", game_reset);
 
 module.exports = {
   board,

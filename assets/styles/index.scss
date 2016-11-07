@@ -9,15 +9,27 @@ $content-color: #000;
 $container-width: 600px;
 $box-width: $container-width / 3;
 $box-height: $container-width / 3;
+$button-margins: 20px;
 
 body {
   background-color: $background-color;
   color: $font-color;
 }
 
+.reset,
+.create-game,
+.get-game {
+  display: block;
+  margin: $button-margins;
+
+}
+
+.get-game {
+  display: block;
+}
+
 .game-buttons {
   float: right;
-  position: relative;
 }
 
 .container {

@@ -55,6 +55,7 @@ const onClickSq = function () {
 
 };
 
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
