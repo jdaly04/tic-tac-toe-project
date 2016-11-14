@@ -51,6 +51,7 @@ const onClickSq = function () {
     gameUi.player = '1';
   }
   gameUi.checkWin();
+  $(this).off('click');
 };
 
 const createGame = function() {
