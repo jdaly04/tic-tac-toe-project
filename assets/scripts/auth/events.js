@@ -38,22 +38,30 @@ const onSignOut = function (event) {
 };
 
 // BEGIN GAME EVENTS -- Need to move to different file!
+
 let sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 const onClickSq = function () {
-  //console.log(gameUi.player);
   if(gameUi.player === '' || gameUi.player === '1') {
     $(this).text('X');
-    console.log($(this).attr('id'));
-    gameUi.board[sqIds.indexOf($(this).attr('id'))] = 'X';
+    gameUi.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
     gameUi.player = "2";
   } else {
    $(this).text('O');
-    gameUi.board[sqIds.indexOf($(this).attr('id'))] = 'O';
+   gameUi.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
     gameUi.player = '1';
   }
   gameUi.checkWin();
+};
+
+const createGame = function() {
+  $('.box').text('');
+  $('.win').text('');
+  gameUi.resetGameBoard();
+  gameUi.player = '';
 
 };
+
+
 
 
 const addHandlers = () => {
@@ -70,7 +78,7 @@ const addHandlers = () => {
   $('#sq7').on('click', onClickSq);
   $('#sq8').on('click', onClickSq);
   $('#sq9').on('click', onClickSq);
-
+  $('.create-game').on('click', createGame);
 };
 
 module.exports = {
