@@ -1,11 +1,9 @@
 'use strict';
 
-
-
-
-//store.game
+const store = require('./store.js');
 
 let board = ['', '', '', '', '', '', '', '', ''];
+let gameData = {};
 
 const resetGameBoard = function(){
   // reset gameboard
@@ -17,9 +15,8 @@ const resetGameBoard = function(){
 };
 
 const updateBoard = function(index, letter){
-  board[index] = letter;
-
-}
+  store.gameData.game.cells[index] = letter;
+};
 
 let player = '';
 
@@ -59,6 +56,22 @@ let checkWin = function () {
   }
 };
 
+const newGame = function () {
+  gameData= {
+    game: {
+      cells: board,
+      over: false,
+      player_x: {
+        id: store.user_id,
+        email: store.user.email
+      },
+      player_o: {}
+    }
+
+  };
+  store.gameData = gameData;
+};
+
 
 module.exports = {
   resetGameBoard,
@@ -66,4 +79,5 @@ module.exports = {
   board,
   player,
   checkWin,
+  newGame,
 };

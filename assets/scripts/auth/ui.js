@@ -11,6 +11,10 @@ const signInSuccess = (data) => {  //if you have curly braces you can have more 
   success(data);
 };
 
+const signUpSuccess = (data) => {
+  store.token = data.user.token;
+};
+
 const failure = (error) => {
   $('#messages').text('fail');
   console.error(error);
@@ -20,4 +24,5 @@ module.exports = {
   failure,
   success,
   signInSuccess,
+  signUpSuccess,
 };

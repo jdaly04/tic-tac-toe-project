@@ -4,13 +4,15 @@ const getFormFields = require(`../../../lib/get-form-fields`);
 
 const api = require('./api');
 const ui = require('./ui');
-const gameUi = require('../game.js');
+const gameLogic = require('../game.js');
+const store = require('../store.js');
+
 
 const onSignUp = function (event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.signUp(data)
-    .then(ui.success)
+    .then(ui.signUpSuccess)
     .catch(ui.failure);
 };
 
@@ -41,24 +43,28 @@ const onSignOut = function (event) {
 
 let sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 const onClickSq = function () {
-  if(gameUi.player === '' || gameUi.player === '1') {
+  if(gameLogic.player === '' || gameLogic.player === '1') {
+    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
     $(this).text('X');
-    gameUi.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
-    gameUi.player = "2";
+    gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
+    gameLogic.player = "2";
+    }
   } else {
-   $(this).text('O');
-   gameUi.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
-    gameUi.player = '1';
+    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
+      $(this).text('O');
+      gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
+      gameLogic.player = '1';
+    }
   }
-  gameUi.checkWin();
-  $(this).off('click');
+  gameLogic.checkWin();
+
 };
 
-const createGame = function() {
+const clickCreateGame = function() {
   $('.box').text('');
   $('.win').text('');
-  gameUi.resetGameBoard();
-  gameUi.player = '';
+  gameLogic.resetGameBoard();
+  gameLogic.player = '';
 
 };
 
@@ -79,7 +85,7 @@ const addHandlers = () => {
   $('#sq7').on('click', onClickSq);
   $('#sq8').on('click', onClickSq);
   $('#sq9').on('click', onClickSq);
-  $('.create-game').on('click', createGame);
+  $('#new-game').on('click', clickCreateGame);
 };
 
 module.exports = {
