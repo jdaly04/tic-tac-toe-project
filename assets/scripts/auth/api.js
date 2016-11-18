@@ -8,6 +8,7 @@ const signUp = (data) =>
     method: 'POST',
     data,
   });
+
   const signIn = (data) =>
     $.ajax({
       url: config.host + '/sign-in',

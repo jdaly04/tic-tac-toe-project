@@ -11,14 +11,13 @@ This is a SPA allowing two players to play tic tac toe. I decided to build
 out the front-end first, then do the token auth API work to allow users to
 sign up, sign in, change password, and sign out. From there, I moved on to the
 game logic and took it step by step. My problem-solving process was to use
-pseudo code to map out a plan for a step, get one portion of that step to work,
-test, save, commit and move on to the next problem. I also utilized classmates,
-instructors, and online resources.
+pseudo code to map out a plan for an indiividual step, work on the actual code
+for that step, test, and iterate until successful. Then, move on to the next
+step. I'd save, commit and move on to the next problem. I also utilized
+classmates, instructors, and online resources for problem-solving and debugging.
 
 Unsolved problems:
-WinCheck function needs to work for tie.
 Reset game functionality needs to be built.
-Display for wins / losses needs to be implemented.
 Game API set up needs to be done.
 Create more modular code files.
 
