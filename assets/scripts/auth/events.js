@@ -4,13 +4,15 @@ const getFormFields = require(`../../../lib/get-form-fields`);
 
 const api = require('./api');
 const ui = require('./ui');
-const gameUi = require('../game.js');
+const gameLogic = require('../game.js');
+const store = require('../store.js');
+
 
 const onSignUp = function (event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.signUp(data)
-    .then(ui.success)
+    .then(ui.signUpSuccess)
     .catch(ui.failure);
 };
 
@@ -38,70 +40,34 @@ const onSignOut = function (event) {
 };
 
 // BEGIN GAME EVENTS -- Need to move to different file!
+
 let sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 const onClickSq = function () {
-  console.log(gameUi.player);
-  if(gameUi.player === '' || gameUi.player === '1') {
+  if(gameLogic.player === '' || gameLogic.player === '1') {
+    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
     $(this).text('X');
-    console.log($(this).attr('id'));
-    gameUi.board[sqIds.indexOf($(this).attr('id'))] = 'X';
-    gameUi.player = "2";
+    gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
+    gameLogic.player = "2";
+    }
   } else {
-   $(this).text('O');
-    gameUi.board[sqIds.indexOf($(this).attr('id'))] = 'O';
-    gameUi.player = '1';
+    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
+      $(this).text('O');
+      gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
+      gameLogic.player = '1';
+    }
   }
-  gameUi.checkWin();
+  gameLogic.checkWin();
 
 };
 
+const clickCreateGame = function() {
+  $('.box').text('');
+  $('.win').text('');
+  gameLogic.resetGameBoard();
+  gameLogic.player = '';
 
+};
 
-
-
-
-
-
-
-// const onClickSq2 = function () {
-//   gameUi.board[1] = 'x';
-//   $("#sq2").text('O');
-// };
-//
-// const onClickSq3 = function () {
-//   gameUi.board[2] = 'x';
-//   $("#sq3").text('');
-// };
-//
-// const onClickSq4 = function () {
-//   gameUi.board[3] = 'x';
-//   $("#sq4").text('');
-// };
-//
-// const onClickSq5 = function () {
-//   gameUi.board[4] = 'x';
-//   $("#sq5").text('');
-// };
-//
-// const onClickSq6 = function () {
-//   gameUi.board[5] = 'x';
-//   $("#sq6").text('');
-// };
-//
-// const onClickSq7 = function () {
-//   gameUi.board[6] = 'x';
-//   $("#sq7").text('');
-// };
-//
-// const onClickSq8 = function () {
-//   gameUi.board[7] = 'x';
-//   $("#sq8").text('O');
-// };
-//
-// const onClickSq9 = function () {
-//   gameUi.board[8] = 'x';
-//   $("#sq9").text('O');
-// };
 
 
 
@@ -119,7 +85,7 @@ const addHandlers = () => {
   $('#sq7').on('click', onClickSq);
   $('#sq8').on('click', onClickSq);
   $('#sq9').on('click', onClickSq);
-
+  $('#new-game').on('click', clickCreateGame);
 };
 
 module.exports = {
