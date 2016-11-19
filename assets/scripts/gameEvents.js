@@ -27,8 +27,8 @@ const onUpdateGame = function () {
      "over": store.gameData.game.over,
    }
  };
-  gameApi.updateGame(data)
-    .then(gameUi.createGameSuccess)
+  gameApi.onUpdateGame(data)
+    .then(gameUi.onUpdateGameSuccess) //changed "create" to "update"
     .catch(gameUi.failure);
  };
 

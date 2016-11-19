@@ -50,7 +50,6 @@ const updateGame = (data) =>
 
 
 module.exports = {
-  //updateGame,
   //indexGame,
   createGame,
   updateGame,

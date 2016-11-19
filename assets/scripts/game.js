@@ -55,21 +55,21 @@ let checkWin = function () {
 };
 
 const newGame = function () {
-  gameData= {
-    game: {
-      cells: board,
-      over: false,
-      value: '',
-      index: 0,
-      player_x: {
-        id: store.user_id,
-        email: store.user.email
-      },
-      player_o: {}
-    }
+ gameData= {
+   game: {
+     cells: board,
+     over: false,
+     value: '',
+     index: 0,
+     player_x: {
+       id: store.user_id,
+       email: store.user.email
+     },
+     player_o: {}
+   }
 
-  };
-  store.gameData = gameData;
+ };
+ store.gameData = gameData;
 };
 
 

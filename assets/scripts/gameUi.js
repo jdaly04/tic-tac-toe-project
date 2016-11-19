@@ -2,15 +2,16 @@
 
 const store = require('./store');
 
-const createGameSuccess = (data) => {
+const createGameSuccess = (gameData) => {
+  store.gameData.game = gameData.game;
 };
 
 //const onGameStatsSuccess = function(event) {
 //  $('#game-stats').text("You've played " + data.games.length + " games.");
 //};
 const updateGameSuccess = (data) => {
-  store.gameData.game= gameData;
-}
+  store.gameData.game = gameData.game;
+};
 
 
 
