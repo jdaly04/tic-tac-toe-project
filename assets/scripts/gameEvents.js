@@ -4,8 +4,8 @@ const gameApi = require('./gameApi');
 const gameUi = require('./gameUi');
 const gameLogic = require('./game.js');
 const store = require('./store.js');
+//const events = require('../events.js');
 
-//const gameLogic = require('./game.js');
 
 const onCreateGame = function(event) {
   if (store.user) {
@@ -17,20 +17,21 @@ const onCreateGame = function(event) {
   }
 };
 
-const onUpdateGame = function () {
+const onUpdateGame = function (index, letter) {
  let data = {
    "game": {
      "cell": {
-       "index": store.gameData.game.index,
-       "value": store.gameData.game.value,
+       "index": index,
+       "value": letter,
      },
-     "over": store.gameData.game.over,
+     "over": store.game.over,
    }
  };
-  gameApi.onUpdateGame(data)
-    .then(gameUi.onUpdateGameSuccess) //changed "create" to "update"
+  gameApi.updateGame(data)
+    .then(gameUi.updateGameSuccess) //changed "create" to "update"
     .catch(gameUi.failure);
  };
+
 
 const addGameHandlers = () => {
   $('#new-game').on('click', onCreateGame);
