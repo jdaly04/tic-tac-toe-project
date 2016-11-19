@@ -6,8 +6,6 @@ let board = ['', '', '', '', '', '', '', '', ''];
 let gameData = {};
 
 const resetGameBoard = function(){
-  // reset gameboard
-  //iterate
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
   }
@@ -61,6 +59,8 @@ const newGame = function () {
     game: {
       cells: board,
       over: false,
+      value: '',
+      index: 0,
       player_x: {
         id: store.user_id,
         email: store.user.email

@@ -8,7 +8,6 @@ const store = require('./store.js');
 //const gameLogic = require('./game.js');
 
 const onCreateGame = function(event) {
-  console.log('HAPPENING');
   if (store.user) {
     gameLogic.newGame();
     event.preventDefault();
@@ -18,18 +17,28 @@ const onCreateGame = function(event) {
   }
 };
 
+const onUpdateGame = function () {
+ let data = {
+   "game": {
+     "cell": {
+       "index": store.gameData.game.index,
+       "value": store.gameData.game.value,
+     },
+     "over": store.gameData.game.over,
+   }
+ };
+  gameApi.updateGame(data)
+    .then(gameUi.createGameSuccess)
+    .catch(gameUi.failure);
+ };
+
 const addGameHandlers = () => {
   $('#new-game').on('click', onCreateGame);
+  //$('#game-stats').on('click', onGameStats); //need to create function.
 };
 
 module.exports = {
   addGameHandlers,
   onCreateGame,
+  onUpdateGame,
 };
-//const onUpdateGame = function (index, value, over) {
-//  event.preventDefault();
-//  let data = getFormFields(this); //where is this data coming from
-//  api.signUp(data)
-//    .then(ui.success);
-//    .catch(ui.failure);
-//};

@@ -2,6 +2,7 @@
 const config = require('./config');
 const store = require('./store');
 
+
 const createGame = function (data) {
   return $.ajax({
     url: config.host + '/games',
@@ -13,14 +14,15 @@ const createGame = function (data) {
   });
 };
 
-//const updateGame = (data) =>
-//  $.ajax({
-//    url: config.host + '/games/:id' + store.sessionId,
-//    method: 'PATCH',
-//    headers: {
-//      Authorization: 'Token token=' + store.user.token,
-//    }
-//   });
+const updateGame = (data) =>
+ $.ajax({
+   url: config.host + '/games/' + store.gameData.game.id,
+   method: 'PATCH',
+   headers: {
+     Authorization: 'Token token=' + store.user.token,
+   },
+   data,
+  });
 
 //  const indexGame = (data) =>
 //    $.ajax({
@@ -51,5 +53,6 @@ module.exports = {
   //updateGame,
   //indexGame,
   createGame,
+  updateGame,
   //showGame,
 };
