@@ -24,7 +24,7 @@ const onUpdateGame = function (index, letter) {
        "index": index,
        "value": letter,
      },
-     "over": store.game.over,
+//      "over": 'false',
    }
  };
   gameApi.updateGame(data)

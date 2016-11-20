@@ -4,6 +4,7 @@ const store = require('./store.js');
 
 let board = ['', '', '', '', '', '', '', '', ''];
 let gameData = {};
+let over = '';
 
 const resetGameBoard = function(){
   for (let i = 0; i < board.length; i++) {
@@ -32,8 +33,9 @@ let checkWin = function () {
       (board[2] === "X" && board[5] === "X" && board[8] === "X") ||
       (board[0] === "X" && board[4] === "X" && board[8] === "X") ||
       (board[2] === "X" && board[4] === "X" && board[6] === "X"))
+
     { $('.win').text("X won!");
-      return true;
+
     }
   else if ((board[0] === "O" && board[1] === "O" && board[2] === "O") ||
      (board[3] === "O" && board[4] === "O" && board[5] === "O")  ||
@@ -45,10 +47,12 @@ let checkWin = function () {
      (board[2] === "O" && board[4] === "O" && board[6] === "O"))
   {
     $('.win').text("O won!");
-    return true;
+
+
   } else if (board.indexOf('') < 0){
       $('.win').text("Tie Game!");
-      return true;
+
+
   } else {
       return false;
   }

@@ -10,7 +10,7 @@ const createGameSuccess = (gameData) => {
 //  $('#game-stats').text("You've played " + data.games.length + " games.");
 //};
 const updateGameSuccess = (data) => {
-  store.gameData.game = gameData.game;
+  store.game = store.game;
 };
 
 
