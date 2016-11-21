@@ -31,6 +31,8 @@ webpackJsonp([0],[
 	$(function () {
 	  authEvents.addHandlers();
 	  gameEvents.addGameHandlers();
+	  $('#ch-password').hide();
+	  $('#sign-out-button').hide();
 	  //when your document is fully loaded, then this code will run. the DOM has been
 	  // constructed. if you're trying to use an API, check the README doc to kno                            // what the specs are
 	});
@@ -64,20 +66,27 @@ webpackJsonp([0],[
 
 	var onChangePassword = function onChangePassword(event) {
 	  event.preventDefault();
-	  var data = getFormFields(this);
-	  api.changePassword(data).then(ui.changePasswordSuccess).catch(ui.failure);
+	  if (store.user) {
+	    var data = getFormFields(this);
+	    api.changePassword(data).then(ui.changePasswordSuccess).catch(ui.failure);
+	  }
 	};
 
 	var onSignOut = function onSignOut(event) {
 	  event.preventDefault();
-	  api.signOut().then(ui.signOutSuccess).catch(ui.failure);
-	  $('#signOutModal').modal("hide");
+	  if (store.user) {
+	    api.signOut().then(ui.signOutSuccess).catch(ui.failure);
+	    $('#signOutModal').modal("hide");
+	  }
 	};
 
 	// BEGIN GAME EVENTS -- Need to move to different file!
 
 	var sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 	var onClickSq = function onClickSq() {
+	  if (!store.user || !store.gameData) {
+	    return;
+	  }
 	  if (gameLogic.player === '' || gameLogic.player === '1') {
 	    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
 	      $(this).text('X');
@@ -104,7 +113,7 @@ webpackJsonp([0],[
 	};
 
 	var addHandlers = function addHandlers() {
-	  $('.win').text('Welcome! Please sign up to start!');
+	  $('.win').text('Welcome! Please sign up or sign in to start!');
 	  $('#sq1').css('pointer-events', 'none');
 	  $('#sq2').css('pointer-events', 'none');
 	  $('#sq3').css('pointer-events', 'none');
@@ -300,6 +309,10 @@ webpackJsonp([0],[
 	  //if you have curly braces you can have more than one expression. without, only 1 expression allowed.
 	  store.user = data.user;
 	  success(data);
+	  $('#ch-password').show();
+	  $('#sign-out-button').show();
+	  $('#sign-in-button').hide();
+	  $('#sign-up-button').hide();
 	  $('#signInModal').modal("hide");
 	  $('.win').text("Success! Now, click New Game to play!");
 	};
@@ -314,8 +327,14 @@ webpackJsonp([0],[
 	  $('.win').text("Success! Now, sign in!");
 	};
 
-	var signOutSuccess = function signOutSuccess(data) {
-	  $('.win').text("You are now logged out! You can play, but no stats will save!");
+	var signOutSuccess = function signOutSuccess() {
+	  $('.win').text("You are now logged out! Please sign back in to play!");
+	  $('#sign-in-button').show();
+	  $('#sign-up-button').show();
+	  $('#ch-password').hide();
+	  $('#sign-out-button').hide();
+	  store.user = null;
+	  store.game = null;
 	};
 
 	var failure = function failure(error) {
@@ -421,6 +440,10 @@ webpackJsonp([0],[
 
 	var onCreateGame = function onCreateGame(event) {
 	  event.preventDefault();
+	  // if (!store.user || !store.game) {
+	  //   return;
+	  // }
+	  // gm.resetGameBoard();
 	  if (store.user) {
 	    gameLogic.newGame();
 	    gameApi.createGame(store.gameData).then(gameUi.createGameSuccess).catch(gameUi.failure);
@@ -443,7 +466,9 @@ webpackJsonp([0],[
 
 	var onGetGames = function onGetGames(event) {
 	  event.preventDefault();
-	  gameApi.indexGame(store.gameData).then(gameUi.getGamesSuccess).catch(gameUi.failure);
+	  if (store.user) {
+	    gameApi.indexGame(store.gameData).then(gameUi.getGamesSuccess).catch(gameUi.failure);
+	  }
 	};
 
 	var addGameHandlers = function addGameHandlers() {
