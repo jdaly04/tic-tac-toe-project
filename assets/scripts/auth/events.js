@@ -26,23 +26,31 @@ const onSignIn = function(event) {
 
 const onChangePassword = function(event) {
   event.preventDefault();
+  if (store.user) {
   let data = getFormFields(this);
   api.changePassword(data)
-    .then(ui.success)
+    .then(ui.changePasswordSuccess)
     .catch(ui.failure);
+  }
 };
 
 const onSignOut = function(event) {
   event.preventDefault();
+  if (store.user) {
   api.signOut()
-    .then(ui.success)
+    .then(ui.signOutSuccess)
     .catch(ui.failure);
+    $('#signOutModal').modal("hide");
+  }
 };
 
 // BEGIN GAME EVENTS -- Need to move to different file!
 
 let sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
 const onClickSq = function() {
+  if (!store.user || !store.gameData) {
+    return;
+  }
   if (gameLogic.player === '' || gameLogic.player === '1') {
     if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
       $(this).text('X');
@@ -72,7 +80,7 @@ const clickCreateGame = function() {
 };
 
 const addHandlers = () => {
-
+  $('.win').text('Welcome! Please sign up or sign in to start!');
   $('#sq1').css('pointer-events', 'none');
   $('#sq2').css('pointer-events', 'none');
   $('#sq3').css('pointer-events', 'none');
@@ -82,6 +90,8 @@ const addHandlers = () => {
   $('#sq7').css('pointer-events', 'none');
   $('#sq8').css('pointer-events', 'none');
   $('#sq9').css('pointer-events', 'none');
+
+
 
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
