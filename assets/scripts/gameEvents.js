@@ -17,27 +17,27 @@ const onCreateGame = function(event) {
   }
 };
 
-const onUpdateGame = function (index, letter) {
- let data = {
-   "game": {
-     "cell": {
-       "index": index,
-       "value": letter,
-     },
-        "over": 'false',
-   }
- };
+const onUpdateGame = function(index, letter) {
+  let data = {
+    "game": {
+      "cell": {
+        "index": index,
+        "value": letter,
+      },
+      "over": 'false',
+    }
+  };
   gameApi.updateGame(data)
     .then(gameUi.updateGameSuccess) //changed "create" to "update"
     .catch(gameUi.failure);
- };
+};
 
- const onGetGames = function(event) {
-   event.preventDefault();
-   gameApi.indexGame(store.gameData)
-   .then(gameUi.getGamesSuccess)
-   .catch(gameUi.failure);
- };
+const onGetGames = function(event) {
+  event.preventDefault();
+  gameApi.indexGame(store.gameData)
+    .then(gameUi.getGamesSuccess)
+    .catch(gameUi.failure);
+};
 
 
 const addGameHandlers = () => {

@@ -1,7 +1,6 @@
 'use strict';
 
 const getFormFields = require(`../../../lib/get-form-fields`);
-//const gameApi = require('../gameApi');
 const api = require('./api');
 const ui = require('./ui');
 const gameLogic = require('../game.js');
@@ -9,7 +8,7 @@ const store = require('../store.js');
 const gameEvents = require('../gameEvents.js');
 
 
-const onSignUp = function (event) {
+const onSignUp = function(event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.signUp(data)
@@ -17,7 +16,7 @@ const onSignUp = function (event) {
     .catch(ui.failure);
 };
 
-const onSignIn = function (event) {
+const onSignIn = function(event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.signIn(data)
@@ -25,7 +24,7 @@ const onSignIn = function (event) {
     .catch(ui.failure);
 };
 
-const onChangePassword = function (event) {
+const onChangePassword = function(event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.changePassword(data)
@@ -33,7 +32,7 @@ const onChangePassword = function (event) {
     .catch(ui.failure);
 };
 
-const onSignOut = function (event) {
+const onSignOut = function(event) {
   event.preventDefault();
   api.signOut()
     .then(ui.success)
@@ -43,23 +42,23 @@ const onSignOut = function (event) {
 // BEGIN GAME EVENTS -- Need to move to different file!
 
 let sqIds = ["sq1", "sq2", "sq3", "sq4", "sq5", "sq6", "sq7", "sq8", "sq9"];
-const onClickSq = function () {
-  if(gameLogic.player === '' || gameLogic.player === '1') {
+const onClickSq = function() {
+  if (gameLogic.player === '' || gameLogic.player === '1') {
     if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
-    $(this).text('X');
-    gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
-    gameLogic.player = "2";
-    gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'X');
+      $(this).text('X');
+      gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
+      gameLogic.player = "2";
+      gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'X');
     }
   } else {
-     if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
+    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
       $(this).text('O');
       gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
       gameLogic.player = '1';
       gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'O');
     }
   }
-    gameLogic.checkWin();
+  gameLogic.checkWin();
 
 };
 
