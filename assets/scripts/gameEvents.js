@@ -8,9 +8,9 @@ const store = require('./store.js');
 
 
 const onCreateGame = function(event) {
+  event.preventDefault();
   if (store.user) {
     gameLogic.newGame();
-    event.preventDefault();
     gameApi.createGame(store.gameData)
       .then(gameUi.createGameSuccess)
       .catch(gameUi.failure);

@@ -72,6 +72,17 @@ const clickCreateGame = function() {
 };
 
 const addHandlers = () => {
+
+  $('#sq1').css('pointer-events', 'none');
+  $('#sq2').css('pointer-events', 'none');
+  $('#sq3').css('pointer-events', 'none');
+  $('#sq4').css('pointer-events', 'none');
+  $('#sq5').css('pointer-events', 'none');
+  $('#sq6').css('pointer-events', 'none');
+  $('#sq7').css('pointer-events', 'none');
+  $('#sq8').css('pointer-events', 'none');
+  $('#sq9').css('pointer-events', 'none');
+
   $('#sign-up').on('submit', onSignUp);
   $('#sign-in').on('submit', onSignIn);
   $('#change-password').on('submit', onChangePassword);
