@@ -44,11 +44,12 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var getFormFields = __webpack_require__(4);
-
+	//const gameApi = require('../gameApi');
 	var api = __webpack_require__(5);
 	var ui = __webpack_require__(8);
 	var gameLogic = __webpack_require__(9);
 	var store = __webpack_require__(7);
+	var gameEvents = __webpack_require__(10);
 
 	var onSignUp = function onSignUp(event) {
 	  event.preventDefault();
@@ -82,12 +83,14 @@ webpackJsonp([0],[
 	      $(this).text('X');
 	      gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
 	      gameLogic.player = "2";
+	      gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'X');
 	    }
 	  } else {
 	    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
 	      $(this).text('O');
 	      gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
 	      gameLogic.player = '1';
+	      gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'O');
 	    }
 	  }
 	  gameLogic.checkWin();
@@ -118,7 +121,12 @@ webpackJsonp([0],[
 	};
 
 	module.exports = {
-	  addHandlers: addHandlers
+	  addHandlers: addHandlers,
+	  onClickSq: onClickSq,
+	  clickCreateGame: clickCreateGame,
+	  onSignOut: onSignOut,
+	  onSignIn: onSignIn,
+	  onSignUp: onSignUp
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -310,13 +318,13 @@ webpackJsonp([0],[
 
 	var board = ['', '', '', '', '', '', '', '', ''];
 	var gameData = {};
+	//let over = '';
 
 	var resetGameBoard = function resetGameBoard() {
-	  // reset gameboard
-	  //iterate
 	  for (var i = 0; i < board.length; i++) {
 	    board[i] = '';
 	  }
+	  $('.box').css('pointer-events', 'auto');
 	};
 
 	var updateBoard = function updateBoard(index, letter) {
@@ -331,15 +339,16 @@ webpackJsonp([0],[
 	//CHECK WIN:
 
 	var checkWin = function checkWin() {
-	  if (board[0] === "X" && board[1] === "X" && board[2] === "X" || board[3] === "X" && board[4] === "X" && board[5] === "X" || board[6] === "X" && board[7] === "X" && board[8] === "X" || board[0] === "X" && board[3] === "X" && board[6] === "X" || board[1] === "X" && board[4] === "X" && board[7] === "X" || board[2] === "X" && board[5] === "X" && board[8] === "X" || board[0] === "X" && board[4] === "X" && board[8] === "X" || board[2] === "X" && board[4] === "X" && board[6] === "X") {
+	  if (store.gameData.game.cells[0] === "X" && store.gameData.game.cells[1] === "X" && store.gameData.game.cells[2] === "X" || store.gameData.game.cells[3] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[5] === "X" || store.gameData.game.cells[6] === "X" && store.gameData.game.cells[7] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[0] === "X" && store.gameData.game.cells[3] === "X" && store.gameData.game.cells[6] === "X" || store.gameData.game.cells[1] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[7] === "X" || store.gameData.game.cells[2] === "X" && store.gameData.game.cells[5] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[0] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[2] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[6] === "X") {
 	    $('.win').text("X won!");
-	    return true;
-	  } else if (board[0] === "O" && board[1] === "O" && board[2] === "O" || board[3] === "O" && board[4] === "O" && board[5] === "O" || board[6] === "O" && board[7] === "O" && board[8] === "O" || board[0] === "O" && board[3] === "O" && board[6] === "O" || board[1] === "O" && board[4] === "O" && board[7] === "O" || board[2] === "O" && board[5] === "O" && board[8] === "O" || board[0] === "O" && board[4] === "O" && board[8] === "O" || board[2] === "O" && board[4] === "O" && board[6] === "O") {
+	    //$('.box').off();
+	    $('.box').css('pointer-events', 'none');
+	  } else if (board[0] === "O" && board[1] === "O" && board[2] === "O" || store.gameData.game.cells[3] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[5] === "O" || store.gameData.game.cells[6] === "O" && store.gameData.game.cells[7] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[0] === "O" && store.gameData.game.cells[3] === "O" && store.gameData.game.cells[6] === "O" || store.gameData.game.cells[1] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[7] === "O" || store.gameData.game.cells[2] === "O" && store.gameData.game.cells[5] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[0] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[2] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[6] === "O") {
 	    $('.win').text("O won!");
-	    return true;
-	  } else if (board.indexOf('') < 0) {
+	    $('.box').css('pointer-events', 'none');
+	  } else if (store.gameData.game.cells.indexOf('') < 0) {
 	    $('.win').text("Tie Game!");
-	    return true;
+	    $('.box').css('pointer-events', 'none');
 	  } else {
 	    return false;
 	  }
@@ -350,6 +359,8 @@ webpackJsonp([0],[
 	    game: {
 	      cells: board,
 	      over: false,
+	      value: '',
+	      index: 0,
 	      player_x: {
 	        id: store.user_id,
 	        email: store.user.email
@@ -381,11 +392,10 @@ webpackJsonp([0],[
 	var gameUi = __webpack_require__(12);
 	var gameLogic = __webpack_require__(9);
 	var store = __webpack_require__(7);
+	//const events = require('../events.js');
 
-	//const gameLogic = require('./game.js');
 
 	var onCreateGame = function onCreateGame(event) {
-	  console.log('HAPPENING');
 	  if (store.user) {
 	    gameLogic.newGame();
 	    event.preventDefault();
@@ -393,21 +403,36 @@ webpackJsonp([0],[
 	  }
 	};
 
+	var onUpdateGame = function onUpdateGame(index, letter) {
+	  var data = {
+	    "game": {
+	      "cell": {
+	        "index": index,
+	        "value": letter
+	      },
+	      "over": 'false'
+	    }
+	  };
+	  gameApi.updateGame(data).then(gameUi.updateGameSuccess) //changed "create" to "update"
+	  .catch(gameUi.failure);
+	};
+
+	var onGetGames = function onGetGames(event) {
+	  event.preventDefault();
+	  gameApi.indexGame(store.gameData).then(gameUi.getGamesSuccess).catch(gameUi.failure);
+	};
+
 	var addGameHandlers = function addGameHandlers() {
 	  $('#new-game').on('click', onCreateGame);
+	  $('#game-stats').on('click', onGetGames);
 	};
 
 	module.exports = {
 	  addGameHandlers: addGameHandlers,
-	  onCreateGame: onCreateGame
+	  onCreateGame: onCreateGame,
+	  onUpdateGame: onUpdateGame,
+	  onGetGames: onGetGames
 	};
-	//const onUpdateGame = function (index, value, over) {
-	//  event.preventDefault();
-	//  let data = getFormFields(this); //where is this data coming from
-	//  api.signUp(data)
-	//    .then(ui.success);
-	//    .catch(ui.failure);
-	//};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
@@ -430,23 +455,27 @@ webpackJsonp([0],[
 	  });
 	};
 
-	//const updateGame = (data) =>
-	//  $.ajax({
-	//    url: config.host + '/games/:id' + store.sessionId,
-	//    method: 'PATCH',
-	//    headers: {
-	//      Authorization: 'Token token=' + store.user.token,
-	//    }
-	//   });
+	var updateGame = function updateGame(data) {
+	  return $.ajax({
+	    url: config.host + '/games/' + store.gameData.game.id,
+	    method: 'PATCH',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    },
+	    data: data
+	  });
+	};
 
-	//  const indexGame = (data) =>
-	//    $.ajax({
-	//      url: config.host + '/games',
-	//      method: 'GET',
-	//      headers: {
-	//        Authorization: 'Token token=' + store.user.token,
-	//      }
-	//    });
+	var indexGame = function indexGame(data) {
+	  return $.ajax({
+	    url: config.host + '/games',
+	    method: 'GET',
+	    headers: {
+	      Authorization: 'Token token=' + store.user.token
+	    },
+	    data: data
+	  });
+	};
 
 	//  const showGame = (data) =>
 	//    $.ajax({
@@ -459,9 +488,9 @@ webpackJsonp([0],[
 
 
 	module.exports = {
-	  //updateGame,
-	  //indexGame,
-	  createGame: createGame
+	  indexGame: indexGame,
+	  createGame: createGame,
+	  updateGame: updateGame
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
@@ -469,15 +498,33 @@ webpackJsonp([0],[
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var store = __webpack_require__(7);
 
-	var createGameSuccess = function createGameSuccess(data) {};
+	var createGameSuccess = function createGameSuccess(gameData) {
+	  store.gameData.game = gameData.game;
+	};
+
+	var getGamesSuccess = function getGamesSuccess(gameData) {
+	  $('.win').text('You have played ' + gameData.games.length + ' games.');
+	};
+
+	var updateGameSuccess = function updateGameSuccess() {
+	  store.game = store.game;
+	};
+
+	//const failure = (error) => {
+	//  $('#messages').text('fail');
+	//  console.error(error);
+	//};
 
 	module.exports = {
-	  createGameSuccess: createGameSuccess
+	  createGameSuccess: createGameSuccess,
+	  updateGameSuccess: updateGameSuccess,
+	  getGamesSuccess: getGamesSuccess
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
 /* 13 */
