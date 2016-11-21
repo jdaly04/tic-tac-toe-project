@@ -14,6 +14,10 @@ const updateGameSuccess = () => {
   store.game = store.game;
 };
 
+const failure = (error) => {
+  console.error(error);
+};
+
 
 
 //const failure = (error) => {
@@ -25,4 +29,5 @@ module.exports = {
   createGameSuccess,
   updateGameSuccess,
   getGamesSuccess,
+  failure,
 };

@@ -3,7 +3,7 @@ const config = require('./config');
 const store = require('./store');
 
 
-const createGame = function (data) {
+const createGame = function(data) {
   return $.ajax({
     url: config.host + '/games',
     method: 'POST',
@@ -15,24 +15,24 @@ const createGame = function (data) {
 };
 
 const updateGame = (data) =>
- $.ajax({
-   url: config.host + '/games/' + store.gameData.game.id,
-   method: 'PATCH',
-   headers: {
-     Authorization: 'Token token=' + store.user.token,
-   },
-   data,
+  $.ajax({
+    url: config.host + '/games/' + store.gameData.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token,
+    },
+    data,
   });
 
-  const indexGame = (data) =>
-    $.ajax({
-      url: config.host + '/games',
-      method: 'GET',
-      headers: {
-        Authorization: 'Token token=' + store.user.token,
-      },
-      data,
-    });
+const indexGame = (data) =>
+  $.ajax({
+    url: config.host + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token,
+    },
+    data,
+  });
 
 //  const showGame = (data) =>
 //    $.ajax({
