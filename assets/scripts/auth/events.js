@@ -60,7 +60,6 @@ const onClickSq = function () {
     }
   }
   gameLogic.checkWin();
-
 };
 
 const clickCreateGame = function() {
@@ -68,6 +67,7 @@ const clickCreateGame = function() {
   $('.win').text('');
   gameLogic.resetGameBoard();
   gameLogic.player = '';
+
 
 };
 

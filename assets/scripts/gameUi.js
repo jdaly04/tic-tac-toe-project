@@ -7,7 +7,7 @@ const createGameSuccess = (gameData) => {
 };
 
 const getGamesSuccess = (gameData) => {
-  $('.win').text('You have played ' + gameData.games.length + 'games.');
+  $('.win').text('You have played ' + gameData.games.length + ' games.');
 };
 
 const updateGameSuccess = () => {

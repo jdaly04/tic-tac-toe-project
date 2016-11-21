@@ -4,13 +4,13 @@ const store = require('./store.js');
 
 let board = ['', '', '', '', '', '', '', '', ''];
 let gameData = {};
-let over = '';
+//let over = '';
 
 const resetGameBoard = function(){
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
   }
-
+    $('.box').css('pointer-events', 'auto');
 };
 
 const updateBoard = function(index, letter){
@@ -35,6 +35,8 @@ let checkWin = function () {
       (store.gameData.game.cells[2] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[6] === "X"))
 
     { $('.win').text("X won!");
+      //$('.box').off();
+      $('.box').css('pointer-events', 'none');
 
     }
   else if ((board[0] === "O" && board[1] === "O" && board[2] === "O") ||
@@ -47,10 +49,11 @@ let checkWin = function () {
      (store.gameData.game.cells[2] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[6] === "O"))
   {
     $('.win').text("O won!");
-
+    $('.box').css('pointer-events', 'none');
 
   } else if (store.gameData.game.cells.indexOf('') < 0){
       $('.win').text("Tie Game!");
+      $('.box').css('pointer-events', 'none');
 
 
   } else {
