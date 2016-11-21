@@ -4,14 +4,13 @@ const store = require('./store.js');
 
 let board = ['', '', '', '', '', '', '', '', ''];
 let gameData = {};
+//let over = '';
 
 const resetGameBoard = function(){
-  // reset gameboard
-  //iterate
   for (let i = 0; i < board.length; i++) {
     board[i] = '';
   }
-
+    $('.box').css('pointer-events', 'auto');
 };
 
 const updateBoard = function(index, letter){
@@ -26,50 +25,58 @@ let player = '';
 //CHECK WIN:
 
 let checkWin = function () {
-   if ((board[0] === "X" && board[1] === "X" && board[2] === "X") ||
-      (board[3] === "X" && board[4] === "X" && board[5] === "X")  ||
-      (board[6] === "X" && board[7] === "X" && board[8] === "X") ||
-      (board[0] === "X" && board[3] === "X" && board[6] === "X") ||
-      (board[1] === "X" && board[4] === "X" && board[7] === "X") ||
-      (board[2] === "X" && board[5] === "X" && board[8] === "X") ||
-      (board[0] === "X" && board[4] === "X" && board[8] === "X") ||
-      (board[2] === "X" && board[4] === "X" && board[6] === "X"))
+   if ((store.gameData.game.cells[0] === "X" && store.gameData.game.cells[1] === "X" && store.gameData.game.cells[2] === "X") ||
+      (store.gameData.game.cells[3] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[5] === "X")  ||
+      (store.gameData.game.cells[6] === "X" && store.gameData.game.cells[7] === "X" && store.gameData.game.cells[8] === "X") ||
+      (store.gameData.game.cells[0] === "X" && store.gameData.game.cells[3] === "X" && store.gameData.game.cells[6] === "X") ||
+      (store.gameData.game.cells[1] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[7] === "X") ||
+      (store.gameData.game.cells[2] === "X" && store.gameData.game.cells[5] === "X" && store.gameData.game.cells[8] === "X") ||
+      (store.gameData.game.cells[0] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[8] === "X") ||
+      (store.gameData.game.cells[2] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[6] === "X"))
+
     { $('.win').text("X won!");
-      return true;
+      //$('.box').off();
+      $('.box').css('pointer-events', 'none');
+
     }
   else if ((board[0] === "O" && board[1] === "O" && board[2] === "O") ||
-     (board[3] === "O" && board[4] === "O" && board[5] === "O")  ||
-     (board[6] === "O" && board[7] === "O" && board[8]=== "O") ||
-     (board[0] === "O" && board[3] === "O" && board[6] === "O") ||
-     (board[1] === "O" && board[4] === "O" && board[7] === "O") ||
-     (board[2] === "O" && board[5] === "O" && board[8] === "O") ||
-     (board[0] === "O" && board[4] === "O" && board[8] === "O") ||
-     (board[2] === "O" && board[4] === "O" && board[6] === "O"))
+     (store.gameData.game.cells[3] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[5] === "O")  ||
+     (store.gameData.game.cells[6] === "O" && store.gameData.game.cells[7] === "O" && store.gameData.game.cells[8]=== "O") ||
+     (store.gameData.game.cells[0] === "O" && store.gameData.game.cells[3] === "O" && store.gameData.game.cells[6] === "O") ||
+     (store.gameData.game.cells[1] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[7] === "O") ||
+     (store.gameData.game.cells[2] === "O" && store.gameData.game.cells[5] === "O" && store.gameData.game.cells[8] === "O") ||
+     (store.gameData.game.cells[0] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[8] === "O") ||
+     (store.gameData.game.cells[2] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[6] === "O"))
   {
     $('.win').text("O won!");
-    return true;
-  } else if (board.indexOf('') < 0){
+    $('.box').css('pointer-events', 'none');
+
+  } else if (store.gameData.game.cells.indexOf('') < 0){
       $('.win').text("Tie Game!");
-      return true;
+      $('.box').css('pointer-events', 'none');
+
+
   } else {
       return false;
   }
 };
 
 const newGame = function () {
-  gameData= {
-    game: {
-      cells: board,
-      over: false,
-      player_x: {
-        id: store.user_id,
-        email: store.user.email
-      },
-      player_o: {}
-    }
+ gameData= {
+   game: {
+     cells: board,
+     over: false,
+     value: '',
+     index: 0,
+     player_x: {
+       id: store.user_id,
+       email: store.user.email
+     },
+     player_o: {}
+   }
 
-  };
-  store.gameData = gameData;
+ };
+ store.gameData = gameData;
 };
 
 

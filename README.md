@@ -15,11 +15,13 @@ pseudo code to map out a plan for an indiividual step, work on the actual code
 for that step, test, and iterate until successful. Then, move on to the next
 step. I'd save, commit and move on to the next problem. I also utilized
 classmates, instructors, and online resources for problem-solving and debugging.
+By end of project work-time, I was able to much more efficiently problem-solve
+on my own by isolating small problems, making one change, checking with debuggers
+and console.logs to pin-point problem. 
 
-Unsolved problems:
-Reset game functionality needs to be built.
-Game API set up needs to be done.
+Future enhancements:
 Create more modular code files.
+Improve UI, specifically with auth buttons (would like to hide them upon success)
 
 
 Link to wireframes and user stories:

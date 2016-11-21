@@ -1,11 +1,12 @@
 'use strict';
 
 const getFormFields = require(`../../../lib/get-form-fields`);
-
+//const gameApi = require('../gameApi');
 const api = require('./api');
 const ui = require('./ui');
 const gameLogic = require('../game.js');
 const store = require('../store.js');
+const gameEvents = require('../gameEvents.js');
 
 
 const onSignUp = function (event) {
@@ -48,15 +49,17 @@ const onClickSq = function () {
     $(this).text('X');
     gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'X');
     gameLogic.player = "2";
+    gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'X');
     }
   } else {
-    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
+     if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
       $(this).text('O');
       gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
       gameLogic.player = '1';
+      gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'O');
     }
   }
-  gameLogic.checkWin();
+    gameLogic.checkWin();
 
 };
 
@@ -66,10 +69,8 @@ const clickCreateGame = function() {
   gameLogic.resetGameBoard();
   gameLogic.player = '';
 
+
 };
-
-
-
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp);
@@ -90,4 +91,9 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
+  onClickSq,
+  clickCreateGame,
+  onSignOut,
+  onSignIn,
+  onSignUp,
 };
