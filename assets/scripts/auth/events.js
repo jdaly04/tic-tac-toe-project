@@ -52,14 +52,15 @@ const onClickSq = function () {
     gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'X');
     }
   } else {
-    if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
+     if (store.gameData.game.cells[sqIds.indexOf($(this).attr('id'))] === '') {
       $(this).text('O');
       gameLogic.updateBoard(sqIds.indexOf($(this).attr('id')), 'O');
       gameLogic.player = '1';
       gameEvents.onUpdateGame(sqIds.indexOf($(this).attr('id')), 'O');
     }
   }
-  gameLogic.checkWin();
+    gameLogic.checkWin();
+
 };
 
 const clickCreateGame = function() {
