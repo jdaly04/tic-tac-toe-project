@@ -65,12 +65,13 @@ webpackJsonp([0],[
 	var onChangePassword = function onChangePassword(event) {
 	  event.preventDefault();
 	  var data = getFormFields(this);
-	  api.changePassword(data).then(ui.success).catch(ui.failure);
+	  api.changePassword(data).then(ui.changePasswordSuccess).catch(ui.failure);
 	};
 
 	var onSignOut = function onSignOut(event) {
 	  event.preventDefault();
-	  api.signOut().then(ui.success).catch(ui.failure);
+	  api.signOut().then(ui.signOutSuccess).catch(ui.failure);
+	  $('#signOutModal').modal("hide");
 	};
 
 	// BEGIN GAME EVENTS -- Need to move to different file!
@@ -103,7 +104,7 @@ webpackJsonp([0],[
 	};
 
 	var addHandlers = function addHandlers() {
-
+	  $('.win').text('Welcome! Please sign up to start!');
 	  $('#sq1').css('pointer-events', 'none');
 	  $('#sq2').css('pointer-events', 'none');
 	  $('#sq3').css('pointer-events', 'none');
@@ -299,14 +300,26 @@ webpackJsonp([0],[
 	  //if you have curly braces you can have more than one expression. without, only 1 expression allowed.
 	  store.user = data.user;
 	  success(data);
+	  $('#signInModal').modal("hide");
+	  $('.win').text("Success! Now, click New Game to play!");
 	};
 
+	var changePasswordSuccess = function changePasswordSuccess(data) {
+	  $('.win').text("Success! Password changed! Keep playing!");
+	  console.log(data);
+	};
 	var signUpSuccess = function signUpSuccess(data) {
 	  store.token = data.user.token;
+	  $('#signUpModal').modal("hide");
+	  $('.win').text("Success! Now, sign in!");
+	};
+
+	var signOutSuccess = function signOutSuccess(data) {
+	  $('.win').text("You are now logged out! You can play, but no stats will save!");
 	};
 
 	var failure = function failure(error) {
-	  $('#messages').text('fail');
+	  $('.win').text("Problem...Try again!");
 	  console.error(error);
 	};
 
@@ -314,7 +327,9 @@ webpackJsonp([0],[
 	  failure: failure,
 	  success: success,
 	  signInSuccess: signInSuccess,
-	  signUpSuccess: signUpSuccess
+	  signUpSuccess: signUpSuccess,
+	  changePasswordSuccess: changePasswordSuccess,
+	  signOutSuccess: signOutSuccess
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
