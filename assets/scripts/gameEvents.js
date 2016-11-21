@@ -4,11 +4,10 @@ const gameApi = require('./gameApi');
 const gameUi = require('./gameUi');
 const gameLogic = require('./game.js');
 const store = require('./store.js');
+//const events = require('../events.js');
 
-//const gameLogic = require('./game.js');
 
 const onCreateGame = function(event) {
-  console.log('HAPPENING');
   if (store.user) {
     gameLogic.newGame();
     event.preventDefault();
@@ -18,18 +17,37 @@ const onCreateGame = function(event) {
   }
 };
 
+const onUpdateGame = function (index, letter) {
+ let data = {
+   "game": {
+     "cell": {
+       "index": index,
+       "value": letter,
+     },
+        "over": 'false',
+   }
+ };
+  gameApi.updateGame(data)
+    .then(gameUi.updateGameSuccess) //changed "create" to "update"
+    .catch(gameUi.failure);
+ };
+
+ const onGetGames = function(event) {
+   event.preventDefault();
+   gameApi.indexGame(store.gameData)
+   .then(gameUi.getGamesSuccess)
+   .catch(gameUi.failure);
+ };
+
+
 const addGameHandlers = () => {
   $('#new-game').on('click', onCreateGame);
+  $('#game-stats').on('click', onGetGames);
 };
 
 module.exports = {
   addGameHandlers,
   onCreateGame,
+  onUpdateGame,
+  onGetGames,
 };
-//const onUpdateGame = function (index, value, over) {
-//  event.preventDefault();
-//  let data = getFormFields(this); //where is this data coming from
-//  api.signUp(data)
-//    .then(ui.success);
-//    .catch(ui.failure);
-//};
