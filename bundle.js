@@ -44,7 +44,6 @@ webpackJsonp([0],[
 	/* WEBPACK VAR INJECTION */(function($) {'use strict';
 
 	var getFormFields = __webpack_require__(4);
-	//const gameApi = require('../gameApi');
 	var api = __webpack_require__(5);
 	var ui = __webpack_require__(8);
 	var gameLogic = __webpack_require__(9);
@@ -104,6 +103,17 @@ webpackJsonp([0],[
 	};
 
 	var addHandlers = function addHandlers() {
+
+	  $('#sq1').css('pointer-events', 'none');
+	  $('#sq2').css('pointer-events', 'none');
+	  $('#sq3').css('pointer-events', 'none');
+	  $('#sq4').css('pointer-events', 'none');
+	  $('#sq5').css('pointer-events', 'none');
+	  $('#sq6').css('pointer-events', 'none');
+	  $('#sq7').css('pointer-events', 'none');
+	  $('#sq8').css('pointer-events', 'none');
+	  $('#sq9').css('pointer-events', 'none');
+
 	  $('#sign-up').on('submit', onSignUp);
 	  $('#sign-in').on('submit', onSignIn);
 	  $('#change-password').on('submit', onChangePassword);
@@ -341,7 +351,6 @@ webpackJsonp([0],[
 	var checkWin = function checkWin() {
 	  if (store.gameData.game.cells[0] === "X" && store.gameData.game.cells[1] === "X" && store.gameData.game.cells[2] === "X" || store.gameData.game.cells[3] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[5] === "X" || store.gameData.game.cells[6] === "X" && store.gameData.game.cells[7] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[0] === "X" && store.gameData.game.cells[3] === "X" && store.gameData.game.cells[6] === "X" || store.gameData.game.cells[1] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[7] === "X" || store.gameData.game.cells[2] === "X" && store.gameData.game.cells[5] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[0] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[8] === "X" || store.gameData.game.cells[2] === "X" && store.gameData.game.cells[4] === "X" && store.gameData.game.cells[6] === "X") {
 	    $('.win').text("X won!");
-	    //$('.box').off();
 	    $('.box').css('pointer-events', 'none');
 	  } else if (board[0] === "O" && board[1] === "O" && board[2] === "O" || store.gameData.game.cells[3] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[5] === "O" || store.gameData.game.cells[6] === "O" && store.gameData.game.cells[7] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[0] === "O" && store.gameData.game.cells[3] === "O" && store.gameData.game.cells[6] === "O" || store.gameData.game.cells[1] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[7] === "O" || store.gameData.game.cells[2] === "O" && store.gameData.game.cells[5] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[0] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[8] === "O" || store.gameData.game.cells[2] === "O" && store.gameData.game.cells[4] === "O" && store.gameData.game.cells[6] === "O") {
 	    $('.win').text("O won!");
@@ -396,9 +405,9 @@ webpackJsonp([0],[
 
 
 	var onCreateGame = function onCreateGame(event) {
+	  event.preventDefault();
 	  if (store.user) {
 	    gameLogic.newGame();
-	    event.preventDefault();
 	    gameApi.createGame(store.gameData).then(gameUi.createGameSuccess).catch(gameUi.failure);
 	  }
 	};
@@ -514,6 +523,10 @@ webpackJsonp([0],[
 	  store.game = store.game;
 	};
 
+	var failure = function failure(error) {
+	  console.error(error);
+	};
+
 	//const failure = (error) => {
 	//  $('#messages').text('fail');
 	//  console.error(error);
@@ -522,7 +535,8 @@ webpackJsonp([0],[
 	module.exports = {
 	  createGameSuccess: createGameSuccess,
 	  updateGameSuccess: updateGameSuccess,
-	  getGamesSuccess: getGamesSuccess
+	  getGamesSuccess: getGamesSuccess,
+	  failure: failure
 	};
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
