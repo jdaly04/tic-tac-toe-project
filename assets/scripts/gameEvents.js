@@ -9,6 +9,10 @@ const store = require('./store.js');
 
 const onCreateGame = function(event) {
   event.preventDefault();
+  // if (!store.user || !store.game) {
+  //   return;
+  // }
+  // gm.resetGameBoard();
   if (store.user) {
     gameLogic.newGame();
     gameApi.createGame(store.gameData)
@@ -34,9 +38,11 @@ const onUpdateGame = function(index, letter) {
 
 const onGetGames = function(event) {
   event.preventDefault();
+  if (store.user) {
   gameApi.indexGame(store.gameData)
     .then(gameUi.getGamesSuccess)
     .catch(gameUi.failure);
+  }
 };
 
 
