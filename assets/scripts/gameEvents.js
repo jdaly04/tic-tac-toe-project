@@ -32,14 +32,22 @@ const onUpdateGame = function (index, letter) {
     .catch(gameUi.failure);
  };
 
+ const onGetGames = function(event) {
+   event.preventDefault();
+   gameApi.indexGame(store.gameData)
+   .then(gameUi.getGamesSuccess)
+   .catch(gameUi.failure);
+ };
+
 
 const addGameHandlers = () => {
   $('#new-game').on('click', onCreateGame);
-  //$('#game-stats').on('click', onGameStats); //need to create function.
+  $('#game-stats').on('click', onGetGames);
 };
 
 module.exports = {
   addGameHandlers,
   onCreateGame,
   onUpdateGame,
+  onGetGames,
 };

@@ -24,14 +24,15 @@ const updateGame = (data) =>
    data,
   });
 
-//  const indexGame = (data) =>
-//    $.ajax({
-//      url: config.host + '/games',
-//      method: 'GET',
-//      headers: {
-//        Authorization: 'Token token=' + store.user.token,
-//      }
-//    });
+  const indexGame = (data) =>
+    $.ajax({
+      url: config.host + '/games',
+      method: 'GET',
+      headers: {
+        Authorization: 'Token token=' + store.user.token,
+      },
+      data,
+    });
 
 //  const showGame = (data) =>
 //    $.ajax({
@@ -50,7 +51,7 @@ const updateGame = (data) =>
 
 
 module.exports = {
-  //indexGame,
+  indexGame,
   createGame,
   updateGame,
   //showGame,

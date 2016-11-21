@@ -6,22 +6,23 @@ const createGameSuccess = (gameData) => {
   store.gameData.game = gameData.game;
 };
 
-//const onGameStatsSuccess = function(event) {
-//  $('#game-stats').text("You've played " + data.games.length + " games.");
-//};
-const updateGameSuccess = (data) => {
+const getGamesSuccess = (gameData) => {
+  $('.win').text('You have played ' + gameData.games.length + 'games.');
+};
+
+const updateGameSuccess = () => {
   store.game = store.game;
 };
 
 
 
-const failure = (error) => {
-  $('#messages').text('fail');
-  console.error(error);
-};
+//const failure = (error) => {
+//  $('#messages').text('fail');
+//  console.error(error);
+//};
 
 module.exports = {
   createGameSuccess,
   updateGameSuccess,
-  //onGameStatsSuccess,
+  getGamesSuccess,
 };
