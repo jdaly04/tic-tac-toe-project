@@ -28,15 +28,16 @@ const onChangePassword = function(event) {
   event.preventDefault();
   let data = getFormFields(this);
   api.changePassword(data)
-    .then(ui.success)
+    .then(ui.changePasswordSuccess)
     .catch(ui.failure);
 };
 
 const onSignOut = function(event) {
   event.preventDefault();
   api.signOut()
-    .then(ui.success)
+    .then(ui.signOutSuccess)
     .catch(ui.failure);
+    $('#signOutModal').modal("hide");
 };
 
 // BEGIN GAME EVENTS -- Need to move to different file!
@@ -72,7 +73,7 @@ const clickCreateGame = function() {
 };
 
 const addHandlers = () => {
-
+  $('.win').text('Welcome! Please sign up to start!')
   $('#sq1').css('pointer-events', 'none');
   $('#sq2').css('pointer-events', 'none');
   $('#sq3').css('pointer-events', 'none');
