@@ -19,6 +19,7 @@ const signInSuccess = (data) => { //if you have curly braces you can have more t
 };
 
 const changePasswordSuccess = (data) => {
+  $('#changePasswordModal').modal("hide");
   $('.win').text("Success! Password changed! Keep playing!");
   console.log(data);
 };
