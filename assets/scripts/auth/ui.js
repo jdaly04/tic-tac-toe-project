@@ -36,7 +36,7 @@ const signOutSuccess = () => {
   $('#ch-password').hide();
   $('#sign-out-button').hide();
   $('.box').text('');
-  $('.win').text('');
+  $('.win').text('You are logged out! Please sign up or in to play!');
 //  reset.store.gameData.game.cells[index]= '';
   store.user = null;
   store.gameData = null;
