@@ -319,6 +319,7 @@ webpackJsonp([0],[
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess(data) {
+	  $('#changePasswordModal').modal("hide");
 	  $('.win').text("Success! Password changed! Keep playing!");
 	  console.log(data);
 	};
