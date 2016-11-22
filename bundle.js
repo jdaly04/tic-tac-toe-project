@@ -316,7 +316,6 @@ webpackJsonp([0],[
 	  $('#sign-up-button').hide();
 	  $('#signInModal').modal("hide");
 	  $('.win').text("Success! Now, click New Game to play!");
-	  $('.dropdown-toggle sign-up pulse').text("Change Password/Sign Out");
 	};
 
 	var changePasswordSuccess = function changePasswordSuccess(data) {

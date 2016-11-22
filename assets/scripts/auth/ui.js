@@ -16,7 +16,6 @@ const signInSuccess = (data) => { //if you have curly braces you can have more t
   $('#sign-up-button').hide();
   $('#signInModal').modal("hide");
   $('.win').text("Success! Now, click New Game to play!");
-  $('.dropdown-toggle sign-up pulse').text("Change Password/Sign Out");
 };
 
 const changePasswordSuccess = (data) => {

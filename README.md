@@ -24,4 +24,17 @@ Create more modular code files, specifically to separate out some of game logic
 and events.
 
 Link to wireframes and user stories:
-https://github.com/jdaly04/game-project-scope-study/blob/response/study.md
+  USER STORIES:
+ As a user, I would like to be able to switch between myself and another person to play the game.
+ As a user, I want to have the game keep track of my scores during each session.
+ As a user, I want to have a working game board that tells me the score.
+ As a user, I want to have my user name saved as well as my current game history.
+ As a user, I want there to be a notification when somebody wins.
+ As the administrator, I want this game to hold my user's scores in a database
+ that can be accessed whenever the person is signed in.
+ As the administrator, I want there to be an option for the user's password to
+ be updated if the at their request.
+
+  WIREFRAMES:
+  http://imgur.com/a/BHVxf
+  http://imgur.com/a/L2Eo9
