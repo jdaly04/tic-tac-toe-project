@@ -37,6 +37,7 @@ body {
 
 .container {
   background-color: $container-color;
+  display: flex;
   position: center;
   width: $container-width;
 }
