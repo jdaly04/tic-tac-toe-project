@@ -17,12 +17,11 @@ step. I'd save, commit and move on to the next problem. I also utilized
 classmates, instructors, and online resources for problem-solving and debugging.
 By end of project work-time, I was able to much more efficiently problem-solve
 on my own by isolating small problems, making one change, checking with debuggers
-and console.logs to pin-point problem. 
+and console.logs to pin-point problem.
 
 Future enhancements:
-Create more modular code files.
-Improve UI, specifically with auth buttons (would like to hide them upon success)
-
+Create more modular code files, specifically to separate out some of game logic
+and events.
 
 Link to wireframes and user stories:
 https://github.com/jdaly04/game-project-scope-study/blob/response/study.md
