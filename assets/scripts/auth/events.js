@@ -41,7 +41,6 @@ const onSignOut = function(event) {
     .then(ui.signOutSuccess)
     .catch(ui.failure);
     $('#signOutModal').modal("hide");
-
   }
 
 };
@@ -73,6 +72,7 @@ const onClickSq = function() {
 };
 
 const clickCreateGame = function() {
+  // debugger;
   $('.box').text('');
   $('.win').text('');
   gameLogic.resetGameBoard();

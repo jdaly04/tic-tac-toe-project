@@ -2,6 +2,7 @@
 
 const store = require('../store');
 
+
 const success = (data) => {
   $('#messages').text('success');
   console.log(data);
@@ -33,8 +34,11 @@ const signOutSuccess = () => {
   $('#sign-up-button').show();
   $('#ch-password').hide();
   $('#sign-out-button').hide();
+  $('.box').text('');
+  $('.win').text('');
+//  reset.store.gameData.game.cells[index]= '';
   store.user = null;
-  store.game = null;
+  store.gameData = null;
 };
 
 const failure = (error) => {
