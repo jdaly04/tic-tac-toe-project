@@ -16,6 +16,11 @@ body {
   color: $font-color;
 }
 
+.win {
+  font-family: Helvetica;
+  text-align: center;
+}
+
 .create-game,
 .get-game {
   display: block;
