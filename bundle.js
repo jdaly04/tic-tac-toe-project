@@ -106,6 +106,7 @@ webpackJsonp([0],[
 	};
 
 	var clickCreateGame = function clickCreateGame() {
+	  // debugger;
 	  $('.box').text('');
 	  $('.win').text('');
 	  gameLogic.resetGameBoard();
@@ -333,8 +334,11 @@ webpackJsonp([0],[
 	  $('#sign-up-button').show();
 	  $('#ch-password').hide();
 	  $('#sign-out-button').hide();
+	  $('.box').text('');
+	  $('.win').text('');
+	  //  reset.store.gameData.game.cells[index]= '';
 	  store.user = null;
-	  store.game = null;
+	  store.gameData = null;
 	};
 
 	var failure = function failure(error) {
