@@ -15,6 +15,8 @@ const signInSuccess = (data) => { //if you have curly braces you can have more t
   $('#sign-in-button').hide();
   $('#sign-up-button').hide();
   $('#signInModal').modal("hide");
+  $('#new-game').show();
+  $('#game-stats').show();
   $('.win').text("Success! Now, click New Game to play!");
 };
 
@@ -35,9 +37,12 @@ const signOutSuccess = () => {
   $('#sign-up-button').show();
   $('#ch-password').hide();
   $('#sign-out-button').hide();
+  $('#new-game').hide();
+  $('#game-stats').hide();
   $('.box').text('');
   $('.win').text('You are logged out! Please sign up or in to play!');
 //  reset.store.gameData.game.cells[index]= '';
+
   store.user = null;
   store.gameData = null;
 };
