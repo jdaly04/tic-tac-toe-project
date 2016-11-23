@@ -17,8 +17,10 @@ body {
 }
 
 .win {
-  font-family: Helvetica;
+  font-family: hoefler;
+  position: relative;
   text-align: center;
+
 }
 
 .create-game,
@@ -36,9 +38,8 @@ body {
 }
 
 .container {
-  background-color: $container-color;
   display: flex;
-  position: center;
+  margin: 0 auto;
   width: $container-width;
 }
 
@@ -49,4 +50,9 @@ body {
   position: relative;
   text-align: center;
   width: $box-width;
+}
+
+.row {
+  background-color: $container-color;
+  margin: 0 auto;
 }
