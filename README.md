@@ -1,11 +1,15 @@
 
-//Produce documentation in the form of a README, which must:
 
-Link to your hosted game in the URL section of your Github repo:
+TIC - TAC - TOE: SPA
 https://jdaly04.github.io/tic-tac-toe-project/
 
-List technologies used:
-HTML, Bootstrap, Sass, JavaScript, JQuery, Ajax
+TECHNOLOGIES USED:
+HTML
+Bootstrap
+Sass
+JavaScript
+JQuery
+Ajax
 
 This is a SPA allowing two players to play tic tac toe. I decided to build
 out the front-end first, then do the token auth API work to allow users to
